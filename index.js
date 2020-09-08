@@ -171,12 +171,14 @@ var test_load_query = () => {
     results = search( index_data, "table placebo" );
     console.log("RELOAD INDEX TEST: "+results.length+" results")
 }
-
-test()
-
-test_load_query()
+// 
+// test()
+//
+// test_load_query()
 
 module.exports = {
   indexFolder,
   search,
+  storeIndex,
+  reloadIndex
 }

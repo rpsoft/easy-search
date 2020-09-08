@@ -1,6 +1,6 @@
 {
   "name": "@sephir/easy-search",
-  "version": "0.0.5",
+  "version": "0.5",
   "description": "easy search system",
   "main": "index.js",
   "scripts": {

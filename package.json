@@ -1,0 +1,25 @@
+{
+  "name": "easy-search",
+  "version": "0.0.5",
+  "description": "easy search system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "search",
+    "system",
+    "folder",
+    "tfidf"
+  ],
+  "author": "Jesus Alberto Rodriguez Perez",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "serialize-javascript": "^4.0.0",
+    "stemmer": "^1.0.5",
+    "stopwords": "0.0.9"
+  }
+}

@@ -1,7 +1,11 @@
 # A Painfully Simple Search System.
 
-Read files in a folder, and make them searchable
+Make files in folder/s searchable. (NODE JS)
 
+## Install
+```{js}
+npm i @sephir/easy-search
+```
 
 ## Usage
 ```{js}

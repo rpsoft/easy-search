@@ -17,7 +17,7 @@ const tokeniseAndStem = ( text ) =>{
 }
 
 // Reads all files in a folder and creates a doc->freq map, and an inverted index out of that.
-const indexFolder = async ( documentsFolders  ) => {
+const indexFolder = async ( documentsFolders, html=false  ) => {
 
   var doc_freqs = new Promise( (accept,reject) => {
 
@@ -35,9 +35,17 @@ const indexFolder = async ( documentsFolders  ) => {
 
                   var doc_path = path.join(directoryPath,file);
 
-                  var doc_content = cheerio.load(fs.readFileSync(doc_path));
 
-                  var text_content = tokeniseAndStem(doc_content.text());
+                  var doc_content = "";
+
+                  if ( html ){
+                    doc_content = cheerio.load(fs.readFileSync(doc_path)).text();
+                  } else {
+                    doc_content = fs.readFileSync(doc_path, "utf8");
+                  }
+
+                  var text_content = tokeniseAndStem(doc_content);
+
 
                   var freq_map = text_content.reduce( (acc,word) => {
 
@@ -148,7 +156,7 @@ var test = async () => {
 
   var t0 = new Date().getTime()
 
-  var index_data = await indexFolder(["testDocs"])
+  var index_data = await indexFolder(["testDocs"], html=true)
 
   var t1 = new Date().getTime()
   console.log("[easy-search] index took " + (t1 - t0) + " milliseconds.")
@@ -171,7 +179,7 @@ var test_load_query = () => {
     console.log("[easy-search] RELOAD INDEX TEST: "+results.length+" results")
 }
 //
-// test()
+test()
 //
 // test_load_query()
 

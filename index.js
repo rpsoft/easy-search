@@ -179,7 +179,7 @@ var test_load_query = () => {
     console.log("[easy-search] RELOAD INDEX TEST: "+results.length+" results")
 }
 //
-test()
+// test()
 //
 // test_load_query()
 

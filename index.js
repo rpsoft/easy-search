@@ -29,7 +29,7 @@ const indexFolder = async ( documentsFolders  ) => {
 
           var files = fs.readdirSync(directoryPath);
 
-          console.log("Processing: "+directoryPath)
+          console.log("[easy-search] Processing: "+directoryPath)
 
               files.forEach(function (file) {
 
@@ -62,7 +62,7 @@ const indexFolder = async ( documentsFolders  ) => {
               });
         }
     } catch (err){
-      reject("failed reading files or folder")
+      reject("[easy-search] failed reading files or folder")
     }
       accept(doc_freqs)
   });
@@ -151,14 +151,14 @@ var test = async () => {
   var index_data = await indexFolder(["testDocs"])
 
   var t1 = new Date().getTime()
-  console.log("index took " + (t1 - t0) + " milliseconds.")
+  console.log("[easy-search] index took " + (t1 - t0) + " milliseconds.")
 
   var results = search( index_data, "table placebo" );
 
   var t2 = new Date().getTime()
-  console.log("Search took " + (t2 - t1) + " milliseconds.")
+  console.log("[easy-search] Search took " + (t2 - t1) + " milliseconds.")
 
-  console.log(results.length+" results")
+  console.log("[easy-search] " + results.length+" results")
 
   storeIndex( index_data, "currentIndex" )
 
@@ -168,7 +168,7 @@ var test_load_query = () => {
 
     index_data = reloadIndex("currentIndex")
     results = search( index_data, "table placebo" );
-    console.log("RELOAD INDEX TEST: "+results.length+" results")
+    console.log("[easy-search] RELOAD INDEX TEST: "+results.length+" results")
 }
 //
 // test()

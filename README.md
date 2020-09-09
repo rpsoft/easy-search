@@ -12,7 +12,8 @@ npm i @sephir/easy-search
 var easysearch = require('@sephir/easy-search')
 
 // feed an array of folders containing the documents. It doesn't do subfolders.
-var searchIndex = await easysearch.indexFolder( ["some/folder/here", "another/folder/here"] )
+var searchIndex = await easysearch.indexFolder( ["some/folder/here", "another/folder/here"], html=false )
+//If your documents are html, then flip the html parameter to true, so that tags can be ignored.
 
 // To search feed the index object and the query
 var results = easysearch.search( searchIndex, "your query here")
@@ -26,7 +27,7 @@ var results = easysearch.search( searchIndex, "your query here")
 // Store your index in a file
 easysearch.storeIndex( index_data, "/some/file/name" )
 
-// Reload your index from a file 
+// Reload your index from a file
 var index_data = reloadIndex("/some/file/name")
 ```
 

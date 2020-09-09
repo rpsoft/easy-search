@@ -17,62 +17,65 @@ const tokeniseAndStem = ( text ) =>{
 }
 
 // Reads all files in a folder and creates a doc->freq map, and an inverted index out of that.
-const indexFolder = async ( documentsFolder  ) => {
+const indexFolder = async ( documentsFolders  ) => {
 
-  const directoryPath = path.join(documentsFolder);
+  var doc_freqs = new Promise( (accept,reject) => {
 
-  var index_data = new Promise( (accept,reject) => {
+      var doc_freqs = {}
 
-      //passsing directoryPath and callback function
-      fs.readdir(directoryPath, function (err, files) {
-          //handling error
-          if (err) {
-              reject("Failed accesing folder")
-          }
+      try{
 
-          var doc_freqs = {}
+      for (var d in documentsFolders){
+        var directoryPath = documentsFolders[d]
 
+        var files = fs.readdirSync(directoryPath);
 
-          //listing all files using forEach
-          files.forEach(function (file) {
-              // Do whatever you want to do with the file
+        console.log("Processing: "+directoryPath)
+        for ( var f in files ){
+            var file = files[f]
 
-              var doc_path = path.join(documentsFolder,file);
+            files.forEach(function (file) {
 
-              var doc_content = cheerio.load(fs.readFileSync(doc_path));
+                var doc_path = path.join(directoryPath,file);
 
-              var text_content = tokeniseAndStem(doc_content.text());
+                var doc_content = cheerio.load(fs.readFileSync(doc_path));
 
-              var freq_map = text_content.reduce( (acc,word) => {
+                var text_content = tokeniseAndStem(doc_content.text());
 
-                  if ( word.length < 3 || isStopWord(word) ){
+                var freq_map = text_content.reduce( (acc,word) => {
+
+                    if ( word.length < 3 || isStopWord(word) ){
+                      return acc
+                    }
+
+                    var docFreq = acc[word]
+
+                    if ( docFreq ){
+                      docFreq = docFreq + 1
+                    } else {
+                      docFreq = 1
+                    }
+
+                    acc[word] = docFreq
+
                     return acc
-                  }
+                } , {} )
 
-                  var docFreq = acc[word]
-
-                  if ( docFreq ){
-                    docFreq = docFreq + 1
-                  } else {
-                    docFreq = 1
-                  }
-
-                  acc[word] = docFreq
-
-                  return acc
-              } , {} )
-
-              doc_freqs[file] = freq_map
-          });
-
-          var inv_index = createInvertedIndex(doc_freqs)
-
-          accept({doc_freqs, inv_index})
-
-      });
+                doc_freqs[file] = freq_map
+            });
+        }
+      }
+    } catch (err){
+      reject("failed reading files or folder")
+    }
+      accept(doc_freqs)
   });
 
-  return await index_data
+  doc_freqs = await doc_freqs;
+
+  var inv_index = createInvertedIndex(doc_freqs)
+
+  return {doc_freqs, inv_index}
 }
 
 // Uses the doc->freq map to create an inverted index.
@@ -132,24 +135,24 @@ const search = ( index_data, query ) => {
   return ranking
 }
 
-function deserialize( serializedJavascript ){
+const deserialize =( serializedJavascript ) => {
   return eval('(' + serializedJavascript + ')');
 }
 
-function reloadIndex( index_path ){
+const reloadIndex = ( index_path ) => {
   return deserialize(fs.readFileSync( index_path, 'utf8' ));
 }
 
-function storeIndex( index_data, index_path ){
+const storeIndex = ( index_data, index_path ) => {
     var dataToSerial = serialize(index_data, {isJSON: true})
     fs.writeFileSync( index_path, dataToSerial);
 }
 
-
 var test = async () => {
+
   var t0 = new Date().getTime()
 
-  var index_data = await indexFolder( "testDocs" )
+  var index_data = await indexFolder([path.join(process.cwd(),"testDocs"), path.join(process.cwd(),"testDocs")])
 
   var t1 = new Date().getTime()
   console.log("index took " + (t1 - t0) + " milliseconds.")
@@ -171,7 +174,7 @@ var test_load_query = () => {
     results = search( index_data, "table placebo" );
     console.log("RELOAD INDEX TEST: "+results.length+" results")
 }
-// 
+//
 // test()
 //
 // test_load_query()

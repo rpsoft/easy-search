@@ -24,47 +24,43 @@ const indexFolder = async ( documentsFolders  ) => {
       var doc_freqs = {}
 
       try{
+        for (var d in documentsFolders){
+          var directoryPath = documentsFolders[d]
 
-      for (var d in documentsFolders){
-        var directoryPath = documentsFolders[d]
+          var files = fs.readdirSync(directoryPath);
 
-        var files = fs.readdirSync(directoryPath);
+          console.log("Processing: "+directoryPath)
 
-        console.log("Processing: "+directoryPath)
-        for ( var f in files ){
-            var file = files[f]
+              files.forEach(function (file) {
 
-            files.forEach(function (file) {
+                  var doc_path = path.join(directoryPath,file);
 
-                var doc_path = path.join(directoryPath,file);
+                  var doc_content = cheerio.load(fs.readFileSync(doc_path));
 
-                var doc_content = cheerio.load(fs.readFileSync(doc_path));
+                  var text_content = tokeniseAndStem(doc_content.text());
 
-                var text_content = tokeniseAndStem(doc_content.text());
+                  var freq_map = text_content.reduce( (acc,word) => {
 
-                var freq_map = text_content.reduce( (acc,word) => {
+                      if ( word.length < 3 || isStopWord(word) ){
+                        return acc
+                      }
 
-                    if ( word.length < 3 || isStopWord(word) ){
+                      var docFreq = acc[word]
+
+                      if ( docFreq ){
+                        docFreq = docFreq + 1
+                      } else {
+                        docFreq = 1
+                      }
+
+                      acc[word] = docFreq
+
                       return acc
-                    }
+                  } , {} )
 
-                    var docFreq = acc[word]
-
-                    if ( docFreq ){
-                      docFreq = docFreq + 1
-                    } else {
-                      docFreq = 1
-                    }
-
-                    acc[word] = docFreq
-
-                    return acc
-                } , {} )
-
-                doc_freqs[file] = freq_map
-            });
+                  doc_freqs[file] = freq_map
+              });
         }
-      }
     } catch (err){
       reject("failed reading files or folder")
     }
@@ -152,7 +148,7 @@ var test = async () => {
 
   var t0 = new Date().getTime()
 
-  var index_data = await indexFolder([path.join(process.cwd(),"testDocs"), path.join(process.cwd(),"testDocs")])
+  var index_data = await indexFolder(["testDocs"])
 
   var t1 = new Date().getTime()
   console.log("index took " + (t1 - t0) + " milliseconds.")
@@ -175,7 +171,7 @@ var test_load_query = () => {
     console.log("RELOAD INDEX TEST: "+results.length+" results")
 }
 //
-// test()
+test()
 //
 // test_load_query()
 

@@ -25,10 +25,10 @@ var results = easysearch.search( searchIndex, "your query here")
 
 ```javascript
 // Store your index in a file
-easysearch.storeIndex( index_data, "/some/file/name" )
+easysearch.storeIndex( searchIndex, "/some/file/name" )
 
 // Reload your index from a file
-var index_data = reloadIndex("/some/file/name")
+var searchIndex = reloadIndex("/some/file/name")
 ```
 
 

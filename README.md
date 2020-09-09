@@ -3,12 +3,12 @@
 Make files in folder/s searchable. (NODE JS)
 
 ## Install
-```{js}
+```javascript
 npm i @sephir/easy-search
 ```
 
 ## Usage
-```{js}
+```javascript
 var easysearch = require('@sephir/easy-search')
 
 // feed an array of folders containing the documents. It doesn't do subfolders.
@@ -22,7 +22,7 @@ var results = easysearch.search( searchIndex, "your query here")
 
 ## Serialise/Deserialise the Index
 
-```{js}
+```javascript
 // Store your index in a file
 easysearch.storeIndex( index_data, "/some/file/name" )
 

@@ -28,7 +28,7 @@ var results = easysearch.search( searchIndex, "your query here")
 easysearch.storeIndex( searchIndex, "/some/file/name" )
 
 // Reload your index from a file
-var searchIndex = reloadIndex("/some/file/name")
+var searchIndex = easysearch.reloadIndex("/some/file/name")
 ```
 
 

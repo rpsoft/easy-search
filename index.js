@@ -35,6 +35,9 @@ const indexFolder = async ( documentsFolders, html=false  ) => {
 
                   var doc_path = path.join(directoryPath,file);
 
+                  if ( fs.existsSync(doc_path) && fs.lstatSync(doc_path).isDirectory()){
+                    return
+                  }
 
                   var doc_content = "";
 
@@ -70,6 +73,7 @@ const indexFolder = async ( documentsFolders, html=false  ) => {
               });
         }
     } catch (err){
+       console.log(err)
       reject("[easy-search] failed reading files or folder")
     }
       accept(doc_freqs)
@@ -156,7 +160,7 @@ var test = async () => {
 
   var t0 = new Date().getTime()
 
-  var index_data = await indexFolder(["testDocs"], html=true)
+  var index_data = await indexFolder(["testDocs", "/home/suso/ihw/tableAnnotator/Server/HTML_TABLES"], html=true)
 
   var t1 = new Date().getTime()
   console.log("[easy-search] index took " + (t1 - t0) + " milliseconds.")
@@ -178,7 +182,7 @@ var test_load_query = () => {
     results = search( index_data, "table placebo" );
     console.log("[easy-search] RELOAD INDEX TEST: "+results.length+" results")
 }
-//
+
 // test()
 //
 // test_load_query()

@@ -17,17 +17,21 @@ const tokeniseAndStem = ( text ) =>{
 }
 
 // Reads all files in a folder and creates a doc->freq map, and an inverted index out of that.
-const indexFolder = async ( documentsFolders, html=false  ) => {
+const indexFolder = async ( documentFolders, html=false  ) => {
 
   var doc_freqs = new Promise( (accept,reject) => {
 
       var doc_freqs = {}
 
       try{
-        for (var d in documentsFolders){
-          var directoryPath = documentsFolders[d]
+        for (var d in documentFolders){
+          var directoryPath = documentFolders[d]
 
           var files = fs.readdirSync(directoryPath);
+
+          var inter_folders = directoryPath.split("/")
+          var subFolder = inter_folders[inter_folders.length-1]
+          // console.log(subFolder)
 
           console.log("[easy-search] Processing: "+directoryPath)
 
@@ -69,7 +73,7 @@ const indexFolder = async ( documentsFolders, html=false  ) => {
                       return acc
                   } , {} )
 
-                  doc_freqs[file] = freq_map
+                  doc_freqs[subFolder+"/"+file] = freq_map
               });
         }
     } catch (err){
@@ -160,7 +164,7 @@ var test = async () => {
 
   var t0 = new Date().getTime()
 
-  var index_data = await indexFolder(["testDocs", "/home/suso/ihw/tableAnnotator/Server/HTML_TABLES"], html=true)
+  var index_data = await indexFolder(["testDocs/1", "testDocs/2"], html=true)
 
   var t1 = new Date().getTime()
   console.log("[easy-search] index took " + (t1 - t0) + " milliseconds.")
@@ -181,6 +185,7 @@ var test_load_query = () => {
     index_data = reloadIndex("currentIndex")
     results = search( index_data, "table placebo" );
     console.log("[easy-search] RELOAD INDEX TEST: "+results.length+" results")
+    console.log(JSON.stringify(results))
 }
 
 // test()

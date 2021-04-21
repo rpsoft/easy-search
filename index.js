@@ -5,7 +5,11 @@ const cheerio = require('cheerio');
 const stopwords = require('stopwords').english;
 var serialize = require('serialize-javascript');
 
-const contextWindowSize = 10
+const json = require('big-json');
+
+const ndjson = require('ndjson');
+
+var chalk = require( "chalk" );
 
 // Simple stopwords check
 const isStopWord = ( word ) => {
@@ -18,7 +22,7 @@ const tokeniseAndStem = ( text, stem = true ) =>{
 }
 
 // Reads all files in a folder and creates a doc->freq map, and an inverted index out of that.
-const indexFolder = async ( documentFolders, html=false  ) => {
+const indexFolder = async ( documentFolders, html=false, contextWindowSize=10 ) => {
 
   var doc_process = new Promise( (accept,reject) => {
 
@@ -35,7 +39,7 @@ const indexFolder = async ( documentFolders, html=false  ) => {
           var subFolder = inter_folders[inter_folders.length-1]
           // console.log(subFolder)
 
-          console.log("[easy-search] Processing: "+directoryPath)
+          console.log(chalk.blue("[easy-search]"),"Processing: "+directoryPath)
 
               files.forEach(function (file) {
 
@@ -94,7 +98,6 @@ const indexFolder = async ( documentFolders, html=false  ) => {
                   }
 
                   doc_chunks[doc_path] = chunk_array
-                  // debugger
 
                   doc_freqs[doc_path] = freq_map
               });
@@ -111,7 +114,6 @@ const indexFolder = async ( documentFolders, html=false  ) => {
   var doc_chunks = doc_process.doc_chunks
   var inv_index = createInvertedIndex(doc_freqs)
 
-  // debugger
   return {doc_freqs, inv_index, doc_chunks}
 }
 
@@ -125,7 +127,7 @@ const createInvertedIndex = ( doc_freqs ) => {
       Object.keys(doc_freqs[doc]).map ( (word,j) => {
 
         var doc_vector = inv_index[word]
-        // debugger
+
         if ( doc_vector && (!doc_vector[doc]) ){
           doc_vector.push(doc)
         } else {
@@ -153,7 +155,7 @@ const search = ( index_data, query, rankLimit=-1 ) => {
 
       // IDF(t) = log_e(Total number of documents / Number of documents with term t in it).
       var idf = index_data.inv_index[term] ? Math.log(N / index_data.inv_index[term].length) : 0 ;
-      // debugger
+
       // TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
       var tf = index_data.doc_freqs[ doc ][ term ] ? index_data.doc_freqs[ doc ][ term ].length : 0 // / Object.keys(index_data.doc_freqs[ doc ]).length
 
@@ -190,54 +192,81 @@ const deserialize =( serializedJavascript ) => {
   return eval('(' + serializedJavascript + ')');
 }
 
-const reloadIndex = ( index_path ) => {
-  return deserialize(fs.readFileSync( index_path, 'utf8' ));
+const reloadIndex = async ( index_path ) => {
+
+  var reloadedData = {}
+
+  reloadedData.doc_freqs = Object.fromEntries(await readStreamPromise(path.join(index_path, "doc_freqs_entries.json")))
+  reloadedData.inv_index = Object.fromEntries(await readStreamPromise(path.join(index_path, "inv_index_entries.json")))
+  reloadedData.doc_chunks = Object.fromEntries(await readStreamPromise(path.join(index_path, "doc_chunks_entries.json")))
+
+  return reloadedData
 }
 
-const storeIndex = ( index_data, index_path ) => {
-    var dataToSerial = serialize(index_data, {isJSON: true})
-    fs.writeFileSync( index_path, dataToSerial);
+const storeIndex = async ( index_data, index_path ) => {
+  await saveStreamPromise( path.join(index_path, "doc_freqs_entries.json"), Object.entries( index_data.doc_freqs ))
+  await saveStreamPromise( path.join(index_path, "inv_index_entries.json"), Object.entries( index_data.inv_index ))
+  await saveStreamPromise( path.join(index_path, "doc_chunks_entries.json"), Object.entries( index_data.doc_chunks ))
 }
 
-var test_load_query = () => {
-    var t0 = new Date().getTime()
-    index_data = reloadIndex("currentIndex")
-    var t1 = new Date().getTime()
-    console.log("[easy-search] RELOAD INDEX TEST took: "+ (t1 - t0) + " milliseconds.")
-    results = search( index_data, "table placebo" );
-    var t2 = new Date().getTime()
-    console.log("[easy-search] Search took " + (t2 - t1) + " milliseconds.")
+function readStreamPromise(filePath){
 
-    // console.log(JSON.stringify(results))
+    return new Promise( (accept,reject) => {
+      var newObject = []
+  		// When we read the file back into memory, ndjson will stream, buffer, and split
+  		// the content based on the newline character. It will then parse each newline-
+  		// delimited value as a JSON object and emit it from the TRANSFORM stream.
+  		var inputStream = fs.createReadStream(filePath);
+  		var transformStream = inputStream.pipe( ndjson.parse() );
+
+  		transformStream
+  			// Each "data" event will emit one item from our original record-set.
+  			.on(
+  				"data",
+  				function handleRecord( data ) {
+            newObject.push(data)
+  				}
+  			)
+
+  			// Once ndjson has parsed all the input, let's indicate done.
+  			.on(
+  				"end",
+  				function handleEnd() {
+            accept(newObject)
+  				}
+  			);
+      });
 }
 
-var test = async () => {
+function saveStreamPromise(filePath, records){
+  return new Promise((resolve, reject) =>{
+    var transformStream = ndjson.stringify();
 
-  var t0 = new Date().getTime()
+    // Pipe the ndjson serialized output to the file-system.
+    var outputStream = transformStream.pipe( fs.createWriteStream( filePath ) );
 
-  var index_data = await indexFolder(["testDocs", "/home/suso/ihw/tableAnnotator/Server/HTML_TABLES"], html=true)
+    // Iterate over the records and write EACH ONE to the TRANSFORM stream individually.
+    // Each one of these records will become a line in the output file.
+    records.forEach(
+    	function iterator( record ) {
+    		transformStream.write( record );
+    	}
+    );
 
-  var t1 = new Date().getTime()
-  console.log("[easy-search] index took " + (t1 - t0) + " milliseconds.")
+    // Once we've written each record in the record-set, we have to end the stream so that
+    // the TRANSFORM stream knows to flush and close the file output stream.
+    transformStream.end();
 
-  var results = search( index_data, "table placebo" );
+    // Once ndjson has flushed all data to the output stream, let's indicate done.
+    outputStream.on(
+    	"finish",
+    	function handleFinish() {
+        resolve()
+    	}
+    );
 
-  var t2 = new Date().getTime()
-  console.log("[easy-search] Search took " + (t2 - t1) + " milliseconds.")
-
-  console.log("[easy-search] " + results.length+" results")
-  results.slice(0,10).map( (res,i) => { console.log(i+" -- "+res.selectedChunks.slice(0,3).flat().join(" "))})
-
-  storeIndex( index_data, "currentIndex" )
-
-
-  test_load_query()
+  });
 }
-
-
-test()
-//
-// test_load_query()
 
 module.exports = {
   indexFolder,

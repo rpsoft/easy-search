@@ -12,7 +12,7 @@ npm i @sephir/easy-search
 var easysearch = require('@sephir/easy-search')
 
 // feed an array of folders containing the documents. It doesn't do subfolders.
-var searchIndex = await easysearch.indexFolder( ["some/folder/here", "another/folder/here"], html=false )
+var searchIndex = await easysearch.indexFolder( ["some/folder/here", "another/folder/here"], html=false, contextWindowSize=10 )
 //If your documents are html, then flip the html parameter to true, so that tags can be ignored.
 
 // To search feed the index object and the query
@@ -24,13 +24,21 @@ var results = easysearch.search( searchIndex, "your query here")
 ## Serialise/Deserialise the Index
 
 ```javascript
-// Store your index in a file
-easysearch.storeIndex( searchIndex, "/some/file/name" )
+// Store your index in a folder
+await easysearch.storeIndex( searchIndex, "/some/folder/name" )
 
 // Reload your index from a file
-var searchIndex = easysearch.reloadIndex("/some/file/name")
+var searchIndex = await easysearch.reloadIndex("/some/folder/name")
 ```
+## UPDATES! v0.9
+- Improved storage which allows now a LOT more documents to be indexed. Limit being what you can load into RAM.
+  - Performance note: Indexing 128k html documents takes ~300 seconds on my hardware.
+- Added context of query words. In search results you can find chunks of text where the query terms have been found.
+  - Size of chunks can be configured within the indexFolder parameter ``contextWindowSize''
 
+## Get in touch!
+
+If you like the project and want to tell me or propose features let me know!: [mailto](mailto:rpsoft@gmail.com) 
 
 ## Disclaimer
 

@@ -88,3 +88,9 @@ typings/
 .dynamodb/
 
 currentIndex
+
+index/doc_chunks_entries.json
+
+index/doc_freqs_entries.json
+
+index/inv_index_entries.json

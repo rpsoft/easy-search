@@ -15,7 +15,7 @@ var test = async () => {
 
   var t0 = new Date().getTime()
 
-  var index_data = await easysearch.indexFolder(["testDocs"], html=true)
+  var index_data = await easysearch.indexFolder(["testDocs"], html=true, 10)
 
   var t1 = new Date().getTime()
   console.log(chalk.blue("[easy-search]"),"index took " + (t1 - t0) + " milliseconds.")

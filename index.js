@@ -3,13 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const cheerio = require('cheerio');
 const stopwords = require('stopwords').english;
-var serialize = require('serialize-javascript');
-
-const json = require('big-json');
-
 const ndjson = require('ndjson');
-
-var chalk = require( "chalk" );
+const chalk = require( "chalk" );
 
 // Simple stopwords check
 const isStopWord = ( word ) => {
@@ -272,5 +267,6 @@ module.exports = {
   indexFolder,
   search,
   storeIndex,
-  reloadIndex
+  reloadIndex,
+  tokeniseAndStem
 }

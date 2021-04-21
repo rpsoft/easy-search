@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const stopwords = require('stopwords').english;
 var serialize = require('serialize-javascript');
 
+const contextWindowSize = 10
 
 // Simple stopwords check
 const isStopWord = ( word ) => {
@@ -12,16 +13,17 @@ const isStopWord = ( word ) => {
 }
 
 // Simple tokenisation and stemming
-const tokeniseAndStem = ( text ) =>{
-  return text.replace(/[^a-z]+/gi, " ").replace(/\s+/g, " ").toLowerCase().split(" ");
+const tokeniseAndStem = ( text, stem = true ) =>{
+  return text.replace(/[^a-z]+/gi, " ").replace(/\s+/g, " ").toLowerCase().split(" ").map( t => stem ? stemmer(t) : t );
 }
 
 // Reads all files in a folder and creates a doc->freq map, and an inverted index out of that.
 const indexFolder = async ( documentsFolders, html=false  ) => {
 
-  var doc_freqs = new Promise( (accept,reject) => {
+  var doc_process = new Promise( (accept,reject) => {
 
       var doc_freqs = {}
+      var doc_chunks = {}
 
       try{
         for (var d in documentsFolders){
@@ -49,41 +51,64 @@ const indexFolder = async ( documentsFolders, html=false  ) => {
 
                   var text_content = tokeniseAndStem(doc_content);
 
+                  var text_content_raw = tokeniseAndStem(doc_content,false);
 
-                  var freq_map = text_content.reduce( (acc,word) => {
+                  var freq_map = {}
+                  var chunk_array = []
 
-                      if ( word.length < 3 || isStopWord(word) ){
-                        return acc
-                      }
+                  var i,j,temparray,chunk = contextWindowSize;
+                  for (i=0,j=text_content.length; i<j; i+=chunk) {
+                      temparray = text_content.slice(i,i+chunk);
+                      temparray_raw = text_content_raw.slice(i,i+chunk);
 
-                      var docFreq = acc[word]
 
-                      if ( docFreq ){
-                        docFreq = docFreq + 1
-                      } else {
-                        docFreq = 1
-                      }
+                      chunk_array.push(temparray_raw)
 
-                      acc[word] = docFreq
+                      var chunkNumber = (i/chunk)
 
-                      return acc
-                  } , {} )
+                      freq_map = temparray.reduce( (acc,word) => {
 
-                  doc_freqs[file] = freq_map
+                          if ( word.length < 3 || isStopWord(word) ){
+                            return acc
+                          }
+
+                          var docFreq = acc[word]
+
+                          if ( Array.isArray(docFreq) ){
+                            if ( (docFreq.indexOf(chunkNumber) < 0) ){
+                              docFreq.push( chunkNumber)
+                            }
+                          } else {
+                            docFreq = [chunkNumber]
+                          }
+
+                          acc[word] = docFreq
+
+                          return acc
+                      } , freq_map )
+
+                  }
+
+                  doc_freqs[doc_path] = freq_map
+                  doc_chunks[doc_path] = chunk_array
+                  // debugger
+
               });
         }
     } catch (err){
        console.log(err)
       reject("[easy-search] failed reading files or folder")
     }
-      accept(doc_freqs)
+      accept({doc_freqs, doc_chunks})
   });
 
-  doc_freqs = await doc_freqs;
-
+  doc_process =  await doc_process;
+  var doc_freqs = doc_process.doc_freqs
+  var doc_chunks = doc_process.doc_chunks
   var inv_index = createInvertedIndex(doc_freqs)
 
-  return {doc_freqs, inv_index}
+  // debugger
+  return {doc_freqs, inv_index, doc_chunks}
 }
 
 // Uses the doc->freq map to create an inverted index.
@@ -96,7 +121,7 @@ const createInvertedIndex = ( doc_freqs ) => {
       Object.keys(doc_freqs[doc]).map ( (word,j) => {
 
         var doc_vector = inv_index[word]
-
+        // debugger
         if ( doc_vector && (!doc_vector[doc]) ){
           doc_vector.push(doc)
         } else {
@@ -111,26 +136,36 @@ const createInvertedIndex = ( doc_freqs ) => {
   return inv_index
 }
 
-const search = ( index_data, query ) => {
+const search = ( index_data, query, rankLimit=-1 ) => {
   query = tokeniseAndStem(query);
 
   var N = Object.keys(index_data.doc_freqs).length
 
   var ranking = Object.keys(index_data.doc_freqs).reduce( (docsList, doc) => {
 
+    var selectedChunks = []
+
     var doc_tf_idf = query.reduce( (total_tf_idf, term) => {
 
       // IDF(t) = log_e(Total number of documents / Number of documents with term t in it).
       var idf = index_data.inv_index[term] ? Math.log(N / index_data.inv_index[term].length) : 0 ;
-
+      // debugger
       // TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
-      var tf = (index_data.doc_freqs[ doc ][ term ] || 0) / Object.keys(index_data.doc_freqs[ doc ]).length
+      var tf = index_data.doc_freqs[ doc ][ term ] ? index_data.doc_freqs[ doc ][ term ].length : 0 // / Object.keys(index_data.doc_freqs[ doc ]).length
+
+      if ( tf > 0 ){
+          selectedChunks = [...selectedChunks, ...index_data.doc_freqs[ doc ][ term ]]
+      }
 
       return total_tf_idf+(tf*idf)
     }, 0)
 
     if ( doc_tf_idf > 0 ){
-      docsList.push( {doc, score: doc_tf_idf} )
+
+      selectedChunks = Array.from(new Set(selectedChunks))
+      selectedChunks = selectedChunks.map( i => index_data.doc_chunks[doc][i])
+
+      docsList.push( {doc, score: doc_tf_idf, selectedChunks} )
     }
 
     return docsList
@@ -139,6 +174,10 @@ const search = ( index_data, query ) => {
   ranking = ranking.sort(function(a, b) {
     return b.score - a.score;
   });
+
+  if ( rankLimit > -1){
+    ranking = ranking.slice(0, rankLimit)
+  }
 
   return ranking
 }
@@ -160,7 +199,7 @@ var test = async () => {
 
   var t0 = new Date().getTime()
 
-  var index_data = await indexFolder(["testDocs", "/home/suso/ihw/tableAnnotator/Server/HTML_TABLES"], html=true)
+  var index_data = await indexFolder(["testDocs"], html=true) //, "/home/suso/ihw/smalltesting"
 
   var t1 = new Date().getTime()
   console.log("[easy-search] index took " + (t1 - t0) + " milliseconds.")
@@ -171,19 +210,18 @@ var test = async () => {
   console.log("[easy-search] Search took " + (t2 - t1) + " milliseconds.")
 
   console.log("[easy-search] " + results.length+" results")
+  results.slice(0,10).map( (res,i) => { console.log(i+" -- "+res.selectedChunks.slice(0,3).flat().join(" "))})
 
   storeIndex( index_data, "currentIndex" )
-
 }
 
 var test_load_query = () => {
-
     index_data = reloadIndex("currentIndex")
     results = search( index_data, "table placebo" );
     console.log("[easy-search] RELOAD INDEX TEST: "+results.length+" results")
 }
 
-// test()
+test()
 //
 // test_load_query()
 

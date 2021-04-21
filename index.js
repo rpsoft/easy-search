@@ -39,7 +39,7 @@ const indexFolder = async ( documentFolders, html=false  ) => {
 
               files.forEach(function (file) {
 
-                  var doc_path = path.join(subFolder,file);
+                  var doc_path = path.join(directoryPath,file);
 
                   if ( fs.existsSync(doc_path) && fs.lstatSync(doc_path).isDirectory()){
                     return
@@ -199,6 +199,18 @@ const storeIndex = ( index_data, index_path ) => {
     fs.writeFileSync( index_path, dataToSerial);
 }
 
+var test_load_query = () => {
+    var t0 = new Date().getTime()
+    index_data = reloadIndex("currentIndex")
+    var t1 = new Date().getTime()
+    console.log("[easy-search] RELOAD INDEX TEST took: "+ (t1 - t0) + " milliseconds.")
+    results = search( index_data, "table placebo" );
+    var t2 = new Date().getTime()
+    console.log("[easy-search] Search took " + (t2 - t1) + " milliseconds.")
+
+    // console.log(JSON.stringify(results))
+}
+
 var test = async () => {
 
   var t0 = new Date().getTime()
@@ -217,14 +229,11 @@ var test = async () => {
   results.slice(0,10).map( (res,i) => { console.log(i+" -- "+res.selectedChunks.slice(0,3).flat().join(" "))})
 
   storeIndex( index_data, "currentIndex" )
+
+
+  test_load_query()
 }
 
-var test_load_query = () => {
-    index_data = reloadIndex("currentIndex")
-    results = search( index_data, "table placebo" );
-    console.log("[easy-search] RELOAD INDEX TEST: "+results.length+" results")
-    console.log(JSON.stringify(results))
-}
 
 test()
 //

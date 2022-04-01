@@ -43,3 +43,7 @@ If you like the project and want to tell me or propose features let me know!: [m
 ## Disclaimer
 
 There are many search solutions much more powerful than this one, however they all require substantial learning before using them. Easy-search has been built to provide a very simple search functionality that should be more than enough for most cases, when your dataset consists of a few thousand documents.
+
+## test
+
+hello!

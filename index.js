@@ -204,6 +204,35 @@ const storeIndex = async ( index_data, index_path ) => {
   await saveStreamPromise( path.join(index_path, "doc_chunks_entries.json"), Object.entries( index_data.doc_chunks ))
 }
 
+const storeIndexAsJSONFile = async (index_data, index_path) => {
+  try {
+    console.log("Saving to: "+index_path)
+    await fs.writeFile(index_path, JSON.stringify(index_data), function(err, result) {
+      if(err) console.log('error', err);
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const readIndexFromJSONFile = async (index_path) => {
+    try {
+      console.log("Reloading: "+index_path)
+
+      var data = new Promise(( accept, reject ) => {
+        fs.readFile(index_path, 'utf8', function (err, data) {
+            accept( JSON.parse(data))
+        })
+      })
+
+      return await data
+      
+    } catch (err) {
+      console.error(err)
+      return false
+    }
+}
+
 function readStreamPromise(filePath){
 
     return new Promise( (accept,reject) => {
@@ -219,6 +248,7 @@ function readStreamPromise(filePath){
   			.on(
   				"data",
   				function handleRecord( data ) {
+            debugger
             newObject.push(data)
   				}
   			)
@@ -268,5 +298,7 @@ module.exports = {
   search,
   storeIndex,
   reloadIndex,
-  tokeniseAndStem
+  tokeniseAndStem,
+  storeIndexAsJSONFile,
+  readIndexFromJSONFile
 }

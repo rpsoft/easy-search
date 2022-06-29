@@ -95,3 +95,6 @@ index/doc_freqs_entries.json
 
 index/inv_index_entries.json
 .Rproj.user
+
+indexFile.json
+package-lock.json

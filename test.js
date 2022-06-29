@@ -16,7 +16,7 @@ var test = async () => {
   var t0 = new Date().getTime()
 
   var index_data = await easysearch.indexFolder(["testDocs"], html=true, 10)
-
+  
   var t1 = new Date().getTime()
   console.log(chalk.blue("[easy-search]"),"index took " + (t1 - t0) + " milliseconds.")
 
@@ -29,6 +29,9 @@ var test = async () => {
   results.slice(0,10).map( async(res,i) => { console.log(i+" -- "+res.selectedChunks.slice(0,3).flat().join(" "))})
 
   await easysearch.storeIndex( index_data, "index" )
+
+  await easysearch.storeIndexAsJSONFile(index_data, "indexFile.json")
+  index_data = await easysearch.readIndexFromJSONFile("indexFile.json")
 
   await test_load_query()
 }

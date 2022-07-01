@@ -30,10 +30,10 @@ var test = async () => {
 
   await easysearch.storeIndex( index_data, "index" )
 
+  await test_load_query()
+
   await easysearch.storeIndexAsJSONFile(index_data, "indexFile.json")
   index_data = await easysearch.readIndexFromJSONFile("indexFile.json")
-
-  await test_load_query()
 }
 
 test()

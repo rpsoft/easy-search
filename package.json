@@ -4,7 +4,10 @@
   "description": "easy search system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "performance1": "node test/performance1.js",
+    "performance2": "node test/performance2.js",
+    "test:watch": "node_modules/.bin/jest --watch",
+    "test": "node_modules/.bin/jest"
   },
   "keywords": [
     "search",
@@ -15,11 +18,12 @@
   "author": "Jesus Alberto Rodriguez Perez",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^4.1.1",
-    "cheerio": "^1.0.0-rc.3",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.12",
     "fs": "0.0.1-security",
     "ndjson": "^2.0.0",
     "path": "^0.12.7",
+    "serialize-javascript": "^6.0.0",
     "stemmer": "^1.0.5",
     "stopwords": "0.0.9"
   },
@@ -30,5 +34,9 @@
   "bugs": {
     "url": "https://github.com/rpsoft/easy-search/issues"
   },
-  "homepage": "https://github.com/rpsoft/easy-search#readme"
+  "homepage": "https://github.com/rpsoft/easy-search#readme",
+  "devDependencies": {
+    "@types/jest": "^29.1.2",
+    "jest": "^29.1.2"
+  }
 }

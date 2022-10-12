@@ -1,0 +1,1108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate index from DB 1`] = `
+{
+  "doc_chunks": {
+    "1": Array 10 [
+      Array 10 ["table", "characteristics", "of", "the", "women", "in", "the", "migraine", "substudy", "of"],
+      Array 10 ["the", "women", "s", "health", "study", "according", "to", "treatment", "allocation", "sr"],
+      Array 10 ["ii", "b", "cjl", "placebo", "n", "p", "value", "age", "years", "body"],
+      Array 10 ["mass", "index", "kg", "m", "history", "of", "hypertension", "a", "c", "history"],
+      Array 10 ["of", "high", "cholesterol", "a", "history", "of", "diabetes", "a", "history", "of"],
+      Array 10 ["parental", "myocardial", "infarction", "before", "age", "a", "smoking", "a", "never", "past"],
+      Array 10 ["current", "alcohol", "intake", "a", "rarely", "monthly", "weekly", "daily", "exercise", "at"],
+      Array 10 ["least", "weekly", "a", "post", "menopausal", "a", "use", "of", "hormone", "replacement"],
+      Array 10 ["therapy", "a", "never", "past", "current", "randomized", "to", "active", "yitamin", "e"],
+      Array 1 [""],
+    ],
+    "2": Array 10 [
+      Array 10 ["", "placebo", "n", "dalteparin", "n", "patients", "characteristics", "female", "age", "years"],
+      Array 10 ["body", "weight", "kg", "body", "mass", "index", "kg", "m", "risk", "factors"],
+      Array 10 ["current", "smoker", "hypertension", "diabetes", "mellitus", "previous", "myocardial", "infarction", "heart", "failure"],
+      Array 10 ["cerebrovascular", "disease", "peripheral", "arterial", "disease", "ulcer", "inclusion", "findings", "unstable", "but"],
+      Array 10 ["no", "rest", "angina", "rest", "angina", "but", "not", "past", "h", "rest"],
+      Array 10 ["angina", "past", "h", "non", "q", "wave", "myocardial", "infarction", "ecg", "changes"],
+      Array 10 ["t", "t", "wave", "inversion", "only", "st", "depression", "only", "st", "depression"],
+      Array 10 ["and", "t", "wave", "inversion", "medication", "at", "entry", "aspirin", "oral", "fi"],
+      Array 10 ["blockers", "calcium", "antagonists", "long", "acting", "nitrates", "annanginal", "drugs", "l", "s"],
+      Array 10 ["glyceryl", "trinitrate", "infusion", "diuretic", "ace", "inhibitor", "median", "delay", "h", ""],
+    ],
+  },
+  "doc_freqs": {
+    "1": {
+      "accord": Array 1 [
+        1,
+      ],
+      "activ": Array 1 [
+        8,
+      ],
+      "alcohol": Array 1 [
+        6,
+      ],
+      "alloc": Array 1 [
+        1,
+      ],
+      "befor": Array 1 [
+        5,
+      ],
+      "bodi": Array 1 [
+        2,
+      ],
+      "characterist": Array 1 [
+        0,
+      ],
+      "cholesterol": Array 1 [
+        4,
+      ],
+      "cjl": Array 1 [
+        2,
+      ],
+      "current": Array 2 [
+        6,
+        8,
+      ],
+      "daili": Array 1 [
+        6,
+      ],
+      "diabet": Array 1 [
+        4,
+      ],
+      "exercis": Array 1 [
+        6,
+      ],
+      "health": Array 1 [
+        1,
+      ],
+      "high": Array 1 [
+        4,
+      ],
+      "histori": Array 2 [
+        3,
+        4,
+      ],
+      "hormon": Array 1 [
+        7,
+      ],
+      "hypertens": Array 1 [
+        3,
+      ],
+      "index": Array 1 [
+        3,
+      ],
+      "infarct": Array 1 [
+        5,
+      ],
+      "intak": Array 1 [
+        6,
+      ],
+      "mass": Array 1 [
+        3,
+      ],
+      "menopaus": Array 1 [
+        7,
+      ],
+      "migrain": Array 1 [
+        0,
+      ],
+      "monthli": Array 1 [
+        6,
+      ],
+      "myocardi": Array 1 [
+        5,
+      ],
+      "parent": Array 1 [
+        5,
+      ],
+      "placebo": Array 1 [
+        2,
+      ],
+      "post": Array 1 [
+        7,
+      ],
+      "random": Array 1 [
+        8,
+      ],
+      "rare": Array 1 [
+        6,
+      ],
+      "replac": Array 1 [
+        7,
+      ],
+      "smoke": Array 1 [
+        5,
+      ],
+      "studi": Array 1 [
+        1,
+      ],
+      "substudi": Array 1 [
+        0,
+      ],
+      "tabl": Array 1 [
+        0,
+      ],
+      "therapi": Array 1 [
+        8,
+      ],
+      "treatment": Array 1 [
+        1,
+      ],
+      "valu": Array 1 [
+        2,
+      ],
+      "weekli": Array 2 [
+        6,
+        7,
+      ],
+      "women": Array 2 [
+        0,
+        1,
+      ],
+      "year": Array 1 [
+        2,
+      ],
+      "yitamin": Array 1 [
+        8,
+      ],
+    },
+    "2": {
+      "act": Array 1 [
+        8,
+      ],
+      "angina": Array 2 [
+        4,
+        5,
+      ],
+      "annangin": Array 1 [
+        8,
+      ],
+      "antagonist": Array 1 [
+        8,
+      ],
+      "arteri": Array 1 [
+        3,
+      ],
+      "aspirin": Array 1 [
+        7,
+      ],
+      "blocker": Array 1 [
+        8,
+      ],
+      "bodi": Array 1 [
+        1,
+      ],
+      "calcium": Array 1 [
+        8,
+      ],
+      "cerebrovascular": Array 1 [
+        3,
+      ],
+      "chang": Array 1 [
+        5,
+      ],
+      "characterist": Array 1 [
+        0,
+      ],
+      "current": Array 1 [
+        2,
+      ],
+      "dalteparin": Array 1 [
+        0,
+      ],
+      "delai": Array 1 [
+        9,
+      ],
+      "depress": Array 1 [
+        6,
+      ],
+      "diabet": Array 1 [
+        2,
+      ],
+      "diseas": Array 1 [
+        3,
+      ],
+      "diuret": Array 1 [
+        9,
+      ],
+      "drug": Array 1 [
+        8,
+      ],
+      "ecg": Array 1 [
+        5,
+      ],
+      "entri": Array 1 [
+        7,
+      ],
+      "factor": Array 1 [
+        1,
+      ],
+      "failur": Array 1 [
+        2,
+      ],
+      "femal": Array 1 [
+        0,
+      ],
+      "find": Array 1 [
+        3,
+      ],
+      "glyceryl": Array 1 [
+        9,
+      ],
+      "heart": Array 1 [
+        2,
+      ],
+      "hypertens": Array 1 [
+        2,
+      ],
+      "inclus": Array 1 [
+        3,
+      ],
+      "index": Array 1 [
+        1,
+      ],
+      "infarct": Array 2 [
+        2,
+        5,
+      ],
+      "infus": Array 1 [
+        9,
+      ],
+      "inhibitor": Array 1 [
+        9,
+      ],
+      "invers": Array 2 [
+        6,
+        7,
+      ],
+      "long": Array 1 [
+        8,
+      ],
+      "mass": Array 1 [
+        1,
+      ],
+      "median": Array 1 [
+        9,
+      ],
+      "medic": Array 1 [
+        7,
+      ],
+      "mellitu": Array 1 [
+        2,
+      ],
+      "myocardi": Array 2 [
+        2,
+        5,
+      ],
+      "nitrat": Array 1 [
+        8,
+      ],
+      "onli": Array 1 [
+        6,
+      ],
+      "oral": Array 1 [
+        7,
+      ],
+      "patient": Array 1 [
+        0,
+      ],
+      "peripher": Array 1 [
+        3,
+      ],
+      "placebo": Array 1 [
+        0,
+      ],
+      "previou": Array 1 [
+        2,
+      ],
+      "rest": Array 1 [
+        4,
+      ],
+      "risk": Array 1 [
+        1,
+      ],
+      "smoker": Array 1 [
+        2,
+      ],
+      "trinitr": Array 1 [
+        9,
+      ],
+      "ulcer": Array 1 [
+        3,
+      ],
+      "unstabl": Array 1 [
+        3,
+      ],
+      "wave": Array 3 [
+        5,
+        6,
+        7,
+      ],
+      "weight": Array 1 [
+        1,
+      ],
+      "year": Array 1 [
+        0,
+      ],
+    },
+  },
+  "doc_info": {
+    "1": {
+      "collection_id": "1",
+      "doi": "1abcde",
+      "file_path": "test/testDocs/11442551_1.html",
+      "pmid": "1fghij",
+      "tid": "1",
+      "url": "http://example1.test",
+      "user": "testUser",
+      "userid": "",
+    },
+    "2": {
+      "collection_id": "1",
+      "doi": "2abcde",
+      "file_path": "test/testDocs/1/8596317_1.html",
+      "pmid": "2fghij",
+      "tid": "2",
+      "url": "http://example2.test",
+      "user": "testUser",
+      "userid": "",
+    },
+  },
+  "inv_index": {
+    "accord": Array 1 [
+      "1",
+    ],
+    "act": Array 1 [
+      "2",
+    ],
+    "activ": Array 1 [
+      "1",
+    ],
+    "alcohol": Array 1 [
+      "1",
+    ],
+    "alloc": Array 1 [
+      "1",
+    ],
+    "angina": Array 1 [
+      "2",
+    ],
+    "annangin": Array 1 [
+      "2",
+    ],
+    "antagonist": Array 1 [
+      "2",
+    ],
+    "arteri": Array 1 [
+      "2",
+    ],
+    "aspirin": Array 1 [
+      "2",
+    ],
+    "befor": Array 1 [
+      "1",
+    ],
+    "blocker": Array 1 [
+      "2",
+    ],
+    "bodi": Array 2 [
+      "1",
+      "2",
+    ],
+    "calcium": Array 1 [
+      "2",
+    ],
+    "cerebrovascular": Array 1 [
+      "2",
+    ],
+    "chang": Array 1 [
+      "2",
+    ],
+    "characterist": Array 2 [
+      "1",
+      "2",
+    ],
+    "cholesterol": Array 1 [
+      "1",
+    ],
+    "cjl": Array 1 [
+      "1",
+    ],
+    "current": Array 2 [
+      "1",
+      "2",
+    ],
+    "daili": Array 1 [
+      "1",
+    ],
+    "dalteparin": Array 1 [
+      "2",
+    ],
+    "delai": Array 1 [
+      "2",
+    ],
+    "depress": Array 1 [
+      "2",
+    ],
+    "diabet": Array 2 [
+      "1",
+      "2",
+    ],
+    "diseas": Array 1 [
+      "2",
+    ],
+    "diuret": Array 1 [
+      "2",
+    ],
+    "drug": Array 1 [
+      "2",
+    ],
+    "ecg": Array 1 [
+      "2",
+    ],
+    "entri": Array 1 [
+      "2",
+    ],
+    "exercis": Array 1 [
+      "1",
+    ],
+    "factor": Array 1 [
+      "2",
+    ],
+    "failur": Array 1 [
+      "2",
+    ],
+    "femal": Array 1 [
+      "2",
+    ],
+    "find": Array 1 [
+      "2",
+    ],
+    "glyceryl": Array 1 [
+      "2",
+    ],
+    "health": Array 1 [
+      "1",
+    ],
+    "heart": Array 1 [
+      "2",
+    ],
+    "high": Array 1 [
+      "1",
+    ],
+    "histori": Array 1 [
+      "1",
+    ],
+    "hormon": Array 1 [
+      "1",
+    ],
+    "hypertens": Array 2 [
+      "1",
+      "2",
+    ],
+    "inclus": Array 1 [
+      "2",
+    ],
+    "index": Array 2 [
+      "1",
+      "2",
+    ],
+    "infarct": Array 2 [
+      "1",
+      "2",
+    ],
+    "infus": Array 1 [
+      "2",
+    ],
+    "inhibitor": Array 1 [
+      "2",
+    ],
+    "intak": Array 1 [
+      "1",
+    ],
+    "invers": Array 1 [
+      "2",
+    ],
+    "long": Array 1 [
+      "2",
+    ],
+    "mass": Array 2 [
+      "1",
+      "2",
+    ],
+    "median": Array 1 [
+      "2",
+    ],
+    "medic": Array 1 [
+      "2",
+    ],
+    "mellitu": Array 1 [
+      "2",
+    ],
+    "menopaus": Array 1 [
+      "1",
+    ],
+    "migrain": Array 1 [
+      "1",
+    ],
+    "monthli": Array 1 [
+      "1",
+    ],
+    "myocardi": Array 2 [
+      "1",
+      "2",
+    ],
+    "nitrat": Array 1 [
+      "2",
+    ],
+    "onli": Array 1 [
+      "2",
+    ],
+    "oral": Array 1 [
+      "2",
+    ],
+    "parent": Array 1 [
+      "1",
+    ],
+    "patient": Array 1 [
+      "2",
+    ],
+    "peripher": Array 1 [
+      "2",
+    ],
+    "placebo": Array 2 [
+      "1",
+      "2",
+    ],
+    "post": Array 1 [
+      "1",
+    ],
+    "previou": Array 1 [
+      "2",
+    ],
+    "random": Array 1 [
+      "1",
+    ],
+    "rare": Array 1 [
+      "1",
+    ],
+    "replac": Array 1 [
+      "1",
+    ],
+    "rest": Array 1 [
+      "2",
+    ],
+    "risk": Array 1 [
+      "2",
+    ],
+    "smoke": Array 1 [
+      "1",
+    ],
+    "smoker": Array 1 [
+      "2",
+    ],
+    "studi": Array 1 [
+      "1",
+    ],
+    "substudi": Array 1 [
+      "1",
+    ],
+    "tabl": Array 1 [
+      "1",
+    ],
+    "therapi": Array 1 [
+      "1",
+    ],
+    "treatment": Array 1 [
+      "1",
+    ],
+    "trinitr": Array 1 [
+      "2",
+    ],
+    "ulcer": Array 1 [
+      "2",
+    ],
+    "unstabl": Array 1 [
+      "2",
+    ],
+    "valu": Array 1 [
+      "1",
+    ],
+    "wave": Array 1 [
+      "2",
+    ],
+    "weekli": Array 1 [
+      "1",
+    ],
+    "weight": Array 1 [
+      "2",
+    ],
+    "women": Array 1 [
+      "1",
+    ],
+    "year": Array 2 [
+      "1",
+      "2",
+    ],
+    "yitamin": Array 1 [
+      "1",
+    ],
+  },
+}
+`;
+
+exports[`generate index from folder 1`] = `
+{
+  doc_chunks: {
+    "testDocs/11442551_1.html": Array 10 [
+      Array 10 ["table", "characteristics", "of", "the", "women", "in", "the", "migraine", "substudy", "of"],
+      Array 10 ["the", "women", "s", "health", "study", "according", "to", "treatment", "allocation", "sr"],
+      Array 10 ["ii", "b", "cjl", "placebo", "n", "p", "value", "age", "years", "body"],
+      Array 10 ["mass", "index", "kg", "m", "history", "of", "hypertension", "a", "c", "history"],
+      Array 10 ["of", "high", "cholesterol", "a", "history", "of", "diabetes", "a", "history", "of"],
+      Array 10 ["parental", "myocardial", "infarction", "before", "age", "a", "smoking", "a", "never", "past"],
+      Array 10 ["current", "alcohol", "intake", "a", "rarely", "monthly", "weekly", "daily", "exercise", "at"],
+      Array 10 ["least", "weekly", "a", "post", "menopausal", "a", "use", "of", "hormone", "replacement"],
+      Array 10 ["therapy", "a", "never", "past", "current", "randomized", "to", "active", "yitamin", "e"],
+      Array 1 [""],
+    ],
+    "testDocs/11442551_2.html": Array 10 [
+      Array 10 ["table", "odds", "ratio", "and", "confidence", "interval", "ci", "of", "self", "reported"],
+      Array 10 ["migraine", "on", "the", "month", "follow", "up", "questionnaire", "among", "all", "women"],
+      Array 10 ["in", "the", "women", "s", "health", "study", "according", "to", "menopause", "status"],
+      Array 10 ["and", "current", "use", "of", "hormone", "replacement", "therapy", "number", "reporting", "migraine"],
+      Array 10 ["on", "month", "questionnaire", "aspirin", "asa", "placebo", "n", "odds", "ratio", "ci"],
+      Array 10 ["all", "randomized", "women", "hormonal", "status", "to", "pre", "menopausal", "without", "hormone"],
+      Array 10 ["replacement", "therapy", "asa", "placebo", "to", "pre", "menopausal", "with", "hormone", "replacement"],
+      Array 10 ["therapy", "asa", "placebo", "to", "post", "menopausal", "without", "hormone", "replacement", "therapy"],
+      Array 10 ["asa", "placebo", "to", "post", "menopausal", "with", "hormone", "replacement", "therapy", "asa"],
+      Array 3 ["placebo", "to", ""],
+    ],
+    "testDocs/11527638_1.html": Array 5 [
+      Array 10 ["", "age", "yrs", "digoxin", "placebo", "digoxin", "placebo", "digoxin", "placebo", "digoxin"],
+      Array 10 ["placebo", "digoxin", "placebo", "n", "male", "nonwhite", "prior", "mi", "hypertension", "diabetes"],
+      Array 10 ["etiology", "ischemic", "nonischemic", "heart", "rate", "min", "mean", "systolic", "bp", "mm"],
+      Array 10 ["hg", "mean", "nyha", "class", "ttf", "fv", "ct", "ratio", "ejection", "fraction"],
+      Array 9 ["mean", "creatinine", "mg", "dl", "medications", "diuretics", "ace", "inhibitors", ""],
+    ],
+    "testDocs/11918909_1.html": Array 11 [
+      Array 10 ["table", "baseline", "characteristics", "of", "patientscabg", "coronary", "artery", "bypass", "surgery", "data"],
+      Array 10 ["are", "number", "of", "patients", "unless", "otherwise", "stated", "time", "to", "first"],
+      Array 10 ["balloon", "inflation", "in", "stent", "group", "and", "time", "to", "initiation", "of"],
+      Array 10 ["lytic", "therapy", "in", "alteplase", "group", "stent", "group", "n", "alteplase", "group"],
+      Array 10 ["n", "demography", "median", "iqr", "age", "years", "m", "f", "history", "diabetes"],
+      Array 10 ["receiving", "insulin", "therapy", "current", "smoker", "median", "iqr", "cholesterol", "mmol", "l"],
+      Array 10 ["previous", "myocardial", "infarction", "previous", "cabg", "infarct", "localisation", "anterior", "inferior", "lateral"],
+      Array 10 ["killip", "class", "i", "ii", "iii", "iv", "median", "iqr", "admission", "data"],
+      Array 10 ["systolic", "blood", "pressure", "mm", "hg", "diastolic", "blood", "pressure", "mm", "hg"],
+      Array 10 ["heart", "rate", "beats", "min", "time", "to", "admission", "min", "time", "to"],
+      Array 4 ["balloon", "needle", "min", ""],
+    ],
+    "testDocs/11937179_1.html": Array 7 [
+      Array 10 ["", "losartan", "n", "atenolol", "n", "all", "with", "diabetes", "n", "all"],
+      Array 10 ["without", "diabetes", "n", "demographic", "and", "clinical", "characteristics", "age", "years", "women"],
+      Array 10 ["ethnic", "origin", "white", "black", "hispanic", "asian", "other", "blood", "pressure", "mm"],
+      Array 10 ["hg", "heart", "rate", "bpm", "bmi", "kg", "m", "cornell", "voltage", "duration"],
+      Array 10 ["product", "mmxmsec", "sokolow", "lyon", "mm", "framingham", "risk", "score", "current", "smokers"],
+      Array 10 ["medical", "history", "any", "vascular", "diasease", "coronary", "heart", "disease", "cerebrovascular", "disease"],
+      Array 9 ["peripheral", "vascular", "disease", "atrial", "fibrillation", "isolated", "systolic", "hypertension", ""],
+    ],
+    "testDocs/11948888_1.html": Array 5 [
+      Array 10 ["table", "i", "baseline", "clinical", "characteristics", "clopidogrel", "n", "ticlopidine", "n", "p"],
+      Array 10 ["age", "years", "women", "n", "diabetes", "n", "smoking", "habit", "n", "hypercholesterolemia"],
+      Array 10 ["n", "systemic", "arterial", "hypertension", "n", "previous", "myocardial", "infarction", "n", "previous"],
+      Array 10 ["balloon", "angioplasty", "n", "previous", "bypass", "surgery", "n", "unstable", "angina", "n"],
+      Array 5 ["platelet", "count", "x", "mm", ""],
+    ],
+  },
+  doc_freqs: {
+    "testDocs/11442551_1.html": {
+      "accord": Array 1 [1],
+      "activ": Array 1 [8],
+      "alcohol": Array 1 [6],
+      "alloc": Array 1 [1],
+      "befor": Array 1 [5],
+      "bodi": Array 1 [2],
+      "characterist": Array 1 [0],
+      "cholesterol": Array 1 [4],
+      "cjl": Array 1 [2],
+      "current": Array 2 [6, 8],
+      "daili": Array 1 [6],
+      "diabet": Array 1 [4],
+      "exercis": Array 1 [6],
+      "health": Array 1 [1],
+      "high": Array 1 [4],
+      "histori": Array 2 [3, 4],
+      "hormon": Array 1 [7],
+      "hypertens": Array 1 [3],
+      "index": Array 1 [3],
+      "infarct": Array 1 [5],
+      "intak": Array 1 [6],
+      "mass": Array 1 [3],
+      "menopaus": Array 1 [7],
+      "migrain": Array 1 [0],
+      "monthli": Array 1 [6],
+      "myocardi": Array 1 [5],
+      "parent": Array 1 [5],
+      "placebo": Array 1 [2],
+      "post": Array 1 [7],
+      "random": Array 1 [8],
+      "rare": Array 1 [6],
+      "replac": Array 1 [7],
+      "smoke": Array 1 [5],
+      "studi": Array 1 [1],
+      "substudi": Array 1 [0],
+      "tabl": Array 1 [0],
+      "therapi": Array 1 [8],
+      "treatment": Array 1 [1],
+      "valu": Array 1 [2],
+      "weekli": Array 2 [6, 7],
+      "women": Array 2 [0, 1],
+      "year": Array 1 [2],
+      "yitamin": Array 1 [8],
+    },
+    "testDocs/11442551_2.html": {
+      "accord": Array 1 [2],
+      "asa": Array 4 [4, 6, 7, 8],
+      "aspirin": Array 1 [4],
+      "confid": Array 1 [0],
+      "current": Array 1 [3],
+      "follow": Array 1 [1],
+      "health": Array 1 [2],
+      "hormon": Array 5 [3, 5, 6, 7, 8],
+      "interv": Array 1 [0],
+      "menopaus": Array 5 [2, 5, 6, 7, 8],
+      "migrain": Array 2 [1, 3],
+      "month": Array 2 [1, 4],
+      "number": Array 1 [3],
+      "odd": Array 2 [0, 4],
+      "placebo": Array 5 [4, 6, 7, 8, 9],
+      "post": Array 2 [7, 8],
+      "pre": Array 2 [5, 6],
+      "questionnair": Array 2 [1, 4],
+      "random": Array 1 [5],
+      "ratio": Array 2 [0, 4],
+      "replac": Array 4 [3, 6, 7, 8],
+      "report": Array 2 [0, 3],
+      "statu": Array 2 [2, 5],
+      "studi": Array 1 [2],
+      "tabl": Array 1 [0],
+      "therapi": Array 4 [3, 6, 7, 8],
+      "women": Array 3 [1, 2, 5],
+    },
+    "testDocs/11527638_1.html": {
+      "class": Array 1 [3],
+      "creatinin": Array 1 [4],
+      "diabet": Array 1 [1],
+      "digoxin": Array 2 [0, 1],
+      "diuret": Array 1 [4],
+      "eject": Array 1 [3],
+      "etiolog": Array 1 [2],
+      "fraction": Array 1 [3],
+      "heart": Array 1 [2],
+      "hypertens": Array 1 [1],
+      "inhibitor": Array 1 [4],
+      "ischem": Array 1 [2],
+      "male": Array 1 [1],
+      "medic": Array 1 [4],
+      "min": Array 1 [2],
+      "nonischem": Array 1 [2],
+      "nonwhit": Array 1 [1],
+      "nyha": Array 1 [3],
+      "placebo": Array 2 [0, 1],
+      "prior": Array 1 [1],
+      "rate": Array 1 [2],
+      "ratio": Array 1 [3],
+      "systol": Array 1 [2],
+      "ttf": Array 1 [3],
+    },
+    "testDocs/11918909_1.html": {
+      "admiss": Array 2 [7, 9],
+      "alteplas": Array 1 [3],
+      "anterior": Array 1 [6],
+      "arteri": Array 1 [0],
+      "balloon": Array 2 [10, 2],
+      "baselin": Array 1 [0],
+      "beat": Array 1 [9],
+      "blood": Array 1 [8],
+      "bypass": Array 1 [0],
+      "cabg": Array 1 [6],
+      "characterist": Array 1 [0],
+      "cholesterol": Array 1 [5],
+      "class": Array 1 [7],
+      "coronari": Array 1 [0],
+      "current": Array 1 [5],
+      "data": Array 2 [0, 7],
+      "demographi": Array 1 [4],
+      "diabet": Array 1 [4],
+      "diastol": Array 1 [8],
+      "group": Array 2 [2, 3],
+      "heart": Array 1 [9],
+      "histori": Array 1 [4],
+      "iii": Array 1 [7],
+      "infarct": Array 1 [6],
+      "inferior": Array 1 [6],
+      "inflat": Array 1 [2],
+      "initi": Array 1 [2],
+      "insulin": Array 1 [5],
+      "iqr": Array 3 [4, 5, 7],
+      "killip": Array 1 [7],
+      "localis": Array 1 [6],
+      "lytic": Array 1 [3],
+      "median": Array 3 [4, 5, 7],
+      "min": Array 2 [10, 9],
+      "mmol": Array 1 [5],
+      "myocardi": Array 1 [6],
+      "needl": Array 1 [10],
+      "number": Array 1 [1],
+      "otherwis": Array 1 [1],
+      "patient": Array 1 [1],
+      "patientscabg": Array 1 [0],
+      "pressur": Array 1 [8],
+      "previou": Array 1 [6],
+      "rate": Array 1 [9],
+      "receiv": Array 1 [5],
+      "smoker": Array 1 [5],
+      "state": Array 1 [1],
+      "stent": Array 2 [2, 3],
+      "surgeri": Array 1 [0],
+      "systol": Array 1 [8],
+      "tabl": Array 1 [0],
+      "therapi": Array 2 [3, 5],
+      "time": Array 3 [1, 2, 9],
+      "year": Array 1 [4],
+    },
+    "testDocs/11937179_1.html": {
+      "ani": Array 1 [5],
+      "asian": Array 1 [2],
+      "atenolol": Array 1 [0],
+      "atrial": Array 1 [6],
+      "black": Array 1 [2],
+      "blood": Array 1 [2],
+      "bmi": Array 1 [3],
+      "bpm": Array 1 [3],
+      "cerebrovascular": Array 1 [5],
+      "characterist": Array 1 [1],
+      "clinic": Array 1 [1],
+      "cornel": Array 1 [3],
+      "coronari": Array 1 [5],
+      "current": Array 1 [4],
+      "demograph": Array 1 [1],
+      "diabet": Array 2 [0, 1],
+      "diaseas": Array 1 [5],
+      "diseas": Array 2 [5, 6],
+      "durat": Array 1 [3],
+      "ethnic": Array 1 [2],
+      "fibril": Array 1 [6],
+      "framingham": Array 1 [4],
+      "heart": Array 2 [3, 5],
+      "hispan": Array 1 [2],
+      "histori": Array 1 [5],
+      "hypertens": Array 1 [6],
+      "isol": Array 1 [6],
+      "losartan": Array 1 [0],
+      "lyon": Array 1 [4],
+      "medic": Array 1 [5],
+      "mmxmsec": Array 1 [4],
+      "origin": Array 1 [2],
+      "peripher": Array 1 [6],
+      "pressur": Array 1 [2],
+      "product": Array 1 [4],
+      "rate": Array 1 [3],
+      "risk": Array 1 [4],
+      "score": Array 1 [4],
+      "smoker": Array 1 [4],
+      "sokolow": Array 1 [4],
+      "systol": Array 1 [6],
+      "vascular": Array 2 [5, 6],
+      "voltag": Array 1 [3],
+      "white": Array 1 [2],
+      "women": Array 1 [1],
+      "year": Array 1 [1],
+    },
+    "testDocs/11948888_1.html": {
+      "angina": Array 1 [3],
+      "angioplasti": Array 1 [3],
+      "arteri": Array 1 [2],
+      "balloon": Array 1 [3],
+      "baselin": Array 1 [0],
+      "bypass": Array 1 [3],
+      "characterist": Array 1 [0],
+      "clinic": Array 1 [0],
+      "clopidogrel": Array 1 [0],
+      "count": Array 1 [4],
+      "diabet": Array 1 [1],
+      "habit": Array 1 [1],
+      "hypercholesterolemia": Array 1 [1],
+      "hypertens": Array 1 [2],
+      "infarct": Array 1 [2],
+      "myocardi": Array 1 [2],
+      "platelet": Array 1 [4],
+      "previou": Array 2 [2, 3],
+      "smoke": Array 1 [1],
+      "surgeri": Array 1 [3],
+      "system": Array 1 [2],
+      "tabl": Array 1 [0],
+      "ticlopidin": Array 1 [0],
+      "unstabl": Array 1 [3],
+      "women": Array 1 [1],
+      "year": Array 1 [1],
+    },
+  },
+  inv_index: {
+    "accord": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "activ": Array 1 [testDocs/11442551_1.html],
+    "admiss": Array 1 [testDocs/11918909_1.html],
+    "alcohol": Array 1 [testDocs/11442551_1.html],
+    "alloc": Array 1 [testDocs/11442551_1.html],
+    "alteplas": Array 1 [testDocs/11918909_1.html],
+    "angina": Array 1 [testDocs/11948888_1.html],
+    "angioplasti": Array 1 [testDocs/11948888_1.html],
+    "ani": Array 1 [testDocs/11937179_1.html],
+    "anterior": Array 1 [testDocs/11918909_1.html],
+    "arteri": Array 2 [testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "asa": Array 1 [testDocs/11442551_2.html],
+    "asian": Array 1 [testDocs/11937179_1.html],
+    "aspirin": Array 1 [testDocs/11442551_2.html],
+    "atenolol": Array 1 [testDocs/11937179_1.html],
+    "atrial": Array 1 [testDocs/11937179_1.html],
+    "balloon": Array 2 [testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "baselin": Array 2 [testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "beat": Array 1 [testDocs/11918909_1.html],
+    "befor": Array 1 [testDocs/11442551_1.html],
+    "black": Array 1 [testDocs/11937179_1.html],
+    "blood": Array 2 [testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "bmi": Array 1 [testDocs/11937179_1.html],
+    "bodi": Array 1 [testDocs/11442551_1.html],
+    "bpm": Array 1 [testDocs/11937179_1.html],
+    "bypass": Array 2 [testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "cabg": Array 1 [testDocs/11918909_1.html],
+    "cerebrovascular": Array 1 [testDocs/11937179_1.html],
+    "characterist": Array 4 [testDocs/11442551_1.html, testDocs/11918909_1.html, testDocs/11937179_1.html, testDocs/11948888_1.html],
+    "cholesterol": Array 2 [testDocs/11442551_1.html, testDocs/11918909_1.html],
+    "cjl": Array 1 [testDocs/11442551_1.html],
+    "class": Array 2 [testDocs/11527638_1.html, testDocs/11918909_1.html],
+    "clinic": Array 2 [testDocs/11937179_1.html, testDocs/11948888_1.html],
+    "clopidogrel": Array 1 [testDocs/11948888_1.html],
+    "confid": Array 1 [testDocs/11442551_2.html],
+    "cornel": Array 1 [testDocs/11937179_1.html],
+    "coronari": Array 2 [testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "count": Array 1 [testDocs/11948888_1.html],
+    "creatinin": Array 1 [testDocs/11527638_1.html],
+    "current": Array 4 [testDocs/11442551_1.html, testDocs/11442551_2.html, testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "daili": Array 1 [testDocs/11442551_1.html],
+    "data": Array 1 [testDocs/11918909_1.html],
+    "demograph": Array 1 [testDocs/11937179_1.html],
+    "demographi": Array 1 [testDocs/11918909_1.html],
+    "diabet": Array 5 [testDocs/11442551_1.html, testDocs/11527638_1.html, testDocs/11918909_1.html, testDocs/11937179_1.html, testDocs/11948888_1.html],
+    "diaseas": Array 1 [testDocs/11937179_1.html],
+    "diastol": Array 1 [testDocs/11918909_1.html],
+    "digoxin": Array 1 [testDocs/11527638_1.html],
+    "diseas": Array 1 [testDocs/11937179_1.html],
+    "diuret": Array 1 [testDocs/11527638_1.html],
+    "durat": Array 1 [testDocs/11937179_1.html],
+    "eject": Array 1 [testDocs/11527638_1.html],
+    "ethnic": Array 1 [testDocs/11937179_1.html],
+    "etiolog": Array 1 [testDocs/11527638_1.html],
+    "exercis": Array 1 [testDocs/11442551_1.html],
+    "fibril": Array 1 [testDocs/11937179_1.html],
+    "follow": Array 1 [testDocs/11442551_2.html],
+    "fraction": Array 1 [testDocs/11527638_1.html],
+    "framingham": Array 1 [testDocs/11937179_1.html],
+    "group": Array 1 [testDocs/11918909_1.html],
+    "habit": Array 1 [testDocs/11948888_1.html],
+    "health": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "heart": Array 3 [testDocs/11527638_1.html, testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "high": Array 1 [testDocs/11442551_1.html],
+    "hispan": Array 1 [testDocs/11937179_1.html],
+    "histori": Array 3 [testDocs/11442551_1.html, testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "hormon": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "hypercholesterolemia": Array 1 [testDocs/11948888_1.html],
+    "hypertens": Array 4 [testDocs/11442551_1.html, testDocs/11527638_1.html, testDocs/11937179_1.html, testDocs/11948888_1.html],
+    "iii": Array 1 [testDocs/11918909_1.html],
+    "index": Array 1 [testDocs/11442551_1.html],
+    "infarct": Array 3 [testDocs/11442551_1.html, testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "inferior": Array 1 [testDocs/11918909_1.html],
+    "inflat": Array 1 [testDocs/11918909_1.html],
+    "inhibitor": Array 1 [testDocs/11527638_1.html],
+    "initi": Array 1 [testDocs/11918909_1.html],
+    "insulin": Array 1 [testDocs/11918909_1.html],
+    "intak": Array 1 [testDocs/11442551_1.html],
+    "interv": Array 1 [testDocs/11442551_2.html],
+    "iqr": Array 1 [testDocs/11918909_1.html],
+    "ischem": Array 1 [testDocs/11527638_1.html],
+    "isol": Array 1 [testDocs/11937179_1.html],
+    "killip": Array 1 [testDocs/11918909_1.html],
+    "localis": Array 1 [testDocs/11918909_1.html],
+    "losartan": Array 1 [testDocs/11937179_1.html],
+    "lyon": Array 1 [testDocs/11937179_1.html],
+    "lytic": Array 1 [testDocs/11918909_1.html],
+    "male": Array 1 [testDocs/11527638_1.html],
+    "mass": Array 1 [testDocs/11442551_1.html],
+    "median": Array 1 [testDocs/11918909_1.html],
+    "medic": Array 2 [testDocs/11527638_1.html, testDocs/11937179_1.html],
+    "menopaus": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "migrain": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "min": Array 2 [testDocs/11527638_1.html, testDocs/11918909_1.html],
+    "mmol": Array 1 [testDocs/11918909_1.html],
+    "mmxmsec": Array 1 [testDocs/11937179_1.html],
+    "month": Array 1 [testDocs/11442551_2.html],
+    "monthli": Array 1 [testDocs/11442551_1.html],
+    "myocardi": Array 3 [testDocs/11442551_1.html, testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "needl": Array 1 [testDocs/11918909_1.html],
+    "nonischem": Array 1 [testDocs/11527638_1.html],
+    "nonwhit": Array 1 [testDocs/11527638_1.html],
+    "number": Array 2 [testDocs/11442551_2.html, testDocs/11918909_1.html],
+    "nyha": Array 1 [testDocs/11527638_1.html],
+    "odd": Array 1 [testDocs/11442551_2.html],
+    "origin": Array 1 [testDocs/11937179_1.html],
+    "otherwis": Array 1 [testDocs/11918909_1.html],
+    "parent": Array 1 [testDocs/11442551_1.html],
+    "patient": Array 1 [testDocs/11918909_1.html],
+    "patientscabg": Array 1 [testDocs/11918909_1.html],
+    "peripher": Array 1 [testDocs/11937179_1.html],
+    "placebo": Array 3 [testDocs/11442551_1.html, testDocs/11442551_2.html, testDocs/11527638_1.html],
+    "platelet": Array 1 [testDocs/11948888_1.html],
+    "post": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "pre": Array 1 [testDocs/11442551_2.html],
+    "pressur": Array 2 [testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "previou": Array 2 [testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "prior": Array 1 [testDocs/11527638_1.html],
+    "product": Array 1 [testDocs/11937179_1.html],
+    "questionnair": Array 1 [testDocs/11442551_2.html],
+    "random": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "rare": Array 1 [testDocs/11442551_1.html],
+    "rate": Array 3 [testDocs/11527638_1.html, testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "ratio": Array 2 [testDocs/11442551_2.html, testDocs/11527638_1.html],
+    "receiv": Array 1 [testDocs/11918909_1.html],
+    "replac": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "report": Array 1 [testDocs/11442551_2.html],
+    "risk": Array 1 [testDocs/11937179_1.html],
+    "score": Array 1 [testDocs/11937179_1.html],
+    "smoke": Array 2 [testDocs/11442551_1.html, testDocs/11948888_1.html],
+    "smoker": Array 2 [testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "sokolow": Array 1 [testDocs/11937179_1.html],
+    "state": Array 1 [testDocs/11918909_1.html],
+    "statu": Array 1 [testDocs/11442551_2.html],
+    "stent": Array 1 [testDocs/11918909_1.html],
+    "studi": Array 2 [testDocs/11442551_1.html, testDocs/11442551_2.html],
+    "substudi": Array 1 [testDocs/11442551_1.html],
+    "surgeri": Array 2 [testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "system": Array 1 [testDocs/11948888_1.html],
+    "systol": Array 3 [testDocs/11527638_1.html, testDocs/11918909_1.html, testDocs/11937179_1.html],
+    "tabl": Array 4 [testDocs/11442551_1.html, testDocs/11442551_2.html, testDocs/11918909_1.html, testDocs/11948888_1.html],
+    "therapi": Array 3 [testDocs/11442551_1.html, testDocs/11442551_2.html, testDocs/11918909_1.html],
+    "ticlopidin": Array 1 [testDocs/11948888_1.html],
+    "time": Array 1 [testDocs/11918909_1.html],
+    "treatment": Array 1 [testDocs/11442551_1.html],
+    "ttf": Array 1 [testDocs/11527638_1.html],
+    "unstabl": Array 1 [testDocs/11948888_1.html],
+    "valu": Array 1 [testDocs/11442551_1.html],
+    "vascular": Array 1 [testDocs/11937179_1.html],
+    "voltag": Array 1 [testDocs/11937179_1.html],
+    "weekli": Array 1 [testDocs/11442551_1.html],
+    "white": Array 1 [testDocs/11937179_1.html],
+    "women": Array 4 [testDocs/11442551_1.html, testDocs/11442551_2.html, testDocs/11937179_1.html, testDocs/11948888_1.html],
+    "year": Array 4 [testDocs/11442551_1.html, testDocs/11918909_1.html, testDocs/11937179_1.html, testDocs/11948888_1.html],
+    "yitamin": Array 1 [testDocs/11442551_1.html],
+  }
+}
+`;

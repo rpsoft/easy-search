@@ -1,11 +1,11 @@
 /**
  * indexFolder,
-search,
-storeIndex,
-reloadIndex
+ * search,
+ * storeIndex,
+ * reloadIndex
  */
+
 const easysearch = require('../index.js')
-// const easysearch = require('../temp.js')
 
 // Index used for testing
 const TEST_PATH = 'test/testDocs'
@@ -119,8 +119,11 @@ const plugin2 = {
 expect.addSnapshotSerializer(plugin);
 expect.addSnapshotSerializer(plugin2);
 
+let indexFromFolder = []
+let indexFromDB = []
+
 test('generate index from folder', async () => {
-  const index_data = await easysearch.indexFolder(
+  indexFromFolder = await easysearch.indexFolder(
     // folders
     [
       TEST_PATH,
@@ -130,7 +133,7 @@ test('generate index from folder', async () => {
     html=true,
     10
   )
-  expect(index_data).toMatchSnapshot();
+  expect(indexFromFolder).toMatchSnapshot();
 });
 
 test('generate index from DB', async () => {
@@ -158,7 +161,8 @@ test('generate index from DB', async () => {
     }
   ]
 
-  const indexFromDB = await easysearch.indexFromDB(
+  // db tables => easysearch => index order by tid (field) + added metadata
+  indexFromDB = await easysearch.indexFromDB(
     // DB info
     info,
     {
@@ -168,8 +172,21 @@ test('generate index from DB', async () => {
     html=true,
     10
   )
-  // expect(indexFromDB).toEqual(false);
   expect(indexFromDB).toMatchSnapshot();
 });
 
-// db tables => easysearch => index order by tid (field) + added metadata
+test('search at index from folder', async () => {
+  const searchAtIndexFromFolder = await easysearch.search(
+    indexFromFolder,
+    SEARCH_TERM
+  )
+  expect(searchAtIndexFromFolder.length).toEqual(5);
+});
+
+test('search at index from DB', async () => {
+  const searchAtIndexFromDB = await easysearch.search(
+    indexFromDB,
+    SEARCH_TERM
+  )
+  expect(searchAtIndexFromDB).toMatchSnapshot();
+});

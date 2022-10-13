@@ -273,11 +273,21 @@ const search = ( index_data, query, rankLimit=-1  ) => {
       selectedChunks = Array.from(new Set(selectedChunks))
       selectedChunks = selectedChunks.map( i => index_data.doc_chunks[doc][i])
 
-      docsList.push({
-        doc,
-        score: doc_tf_idf,
-        selectedChunks
-      })
+      // Add doc_info?
+      if (index_data.doc_info) {
+        docsList.push({
+          doc,
+          score: doc_tf_idf,
+          selectedChunks,
+          info: index_data.doc_info[doc]
+        })
+      } else {
+        docsList.push({
+          doc,
+          score: doc_tf_idf,
+          selectedChunks
+        })
+      }
     }
 
     return docsList

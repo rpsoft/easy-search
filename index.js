@@ -273,11 +273,21 @@ const search = ( index_data, query, rankLimit=-1  ) => {
       selectedChunks = Array.from(new Set(selectedChunks))
       selectedChunks = selectedChunks.map( i => index_data.doc_chunks[doc][i])
 
-      docsList.push({
-        doc,
-        score: doc_tf_idf,
-        selectedChunks
-      })
+      // Add doc_info?
+      if (index_data.doc_info) {
+        docsList.push({
+          doc,
+          score: doc_tf_idf,
+          selectedChunks,
+          info: index_data.doc_info[doc]
+        })
+      } else {
+        docsList.push({
+          doc,
+          score: doc_tf_idf,
+          selectedChunks
+        })
+      }
     }
 
     return docsList
@@ -307,10 +317,94 @@ const storeIndex = async ( index_data, index_path ) => {
   return 'done'
 }
 
+const storeIndexAsJSONFile = async (index_data, index_path) => {
+  try {
+    console.log("Saving to: "+index_path)
+    return fs.writeFile(index_path, JSON.stringify(index_data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const readIndexFromJSONFile = async (index_path) => {
+  try {
+    console.log("Reloading: "+index_path)
+
+    let data = await fs.readFile(index_path, 'utf8')
+
+    return data
+  } catch (err) {
+    console.error(err)
+    return false
+  }
+}
+
+function readStreamPromise(filePath) {
+  return new Promise( (accept,reject) => {
+    let newObject = []
+    // When we read the file back into memory, ndjson will stream, buffer, and split
+    // the content based on the newline character. It will then parse each newline-
+    // delimited value as a JSON object and emit it from the TRANSFORM stream.
+    let inputStream = fs.createReadStream(filePath);
+    let transformStream = inputStream.pipe( ndjson.parse() );
+
+    transformStream
+      // Each "data" event will emit one item from our original record-set.
+      .on(
+        "data",
+        function handleRecord( data ) {
+          debugger
+          newObject.push(data)
+        }
+      )
+
+      // Once ndjson has parsed all the input, let's indicate done.
+      .on(
+        "end",
+        function handleEnd() {
+          accept(newObject)
+        }
+      );
+  });
+}
+
+function saveStreamPromise(filePath, records) {
+  return new Promise((resolve, reject) =>{
+    let transformStream = ndjson.stringify();
+
+    // Pipe the ndjson serialized output to the file-system.
+    let outputStream = transformStream.pipe( fs.createWriteStream( filePath ) );
+
+    // Iterate over the records and write EACH ONE to the TRANSFORM stream individually.
+    // Each one of these records will become a line in the output file.
+    records.forEach(
+    	function iterator( record ) {
+    		transformStream.write( record );
+    	}
+    );
+
+    // Once we've written each record in the record-set, we have to end the stream so that
+    // the TRANSFORM stream knows to flush and close the file output stream.
+    transformStream.end();
+
+    // Once ndjson has flushed all data to the output stream, let's indicate done.
+    outputStream.on(
+    	"finish",
+    	function handleFinish() {
+        resolve()
+    	}
+    );
+
+  });
+}
+
 module.exports = {
   indexFolder,
   indexFromDB,
   search,
   storeIndex,
-  reloadIndex
+  reloadIndex,
+  tokeniseAndStem,
+  storeIndexAsJSONFile,
+  readIndexFromJSONFile
 }

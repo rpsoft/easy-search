@@ -6,6 +6,7 @@
   "scripts": {
     "performance1": "node test/performance1.js",
     "performance2": "node test/performance2.js",
+    "performance3": "node test/performance3.js",
     "test:watch": "node_modules/.bin/jest --watch",
     "test": "node_modules/.bin/jest"
   },

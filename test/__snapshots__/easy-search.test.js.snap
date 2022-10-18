@@ -1106,3 +1106,26 @@ exports[`generate index from folder 1`] = `
   }
 }
 `;
+
+exports[`search at index from DB 1`] = `
+Array 1 [
+  {
+    "doc": "1",
+    "info": {
+      "collection_id": "1",
+      "doi": "1abcde",
+      "file_path": "test/testDocs/11442551_1.html",
+      "pmid": "1fghij",
+      "tid": "1",
+      "url": "http://example1.test",
+      "user": "testUser",
+      "userid": "",
+    },
+    "score": 0.6931471805599453,
+    "selectedChunks": Array 2 [
+      Array 10 ["table", "characteristics", "of", "the", "women", "in", "the", "migraine", "substudy", "of"],
+      Array 10 ["ii", "b", "cjl", "placebo", "n", "p", "value", "age", "years", "body"],
+    ],
+  },
+]
+`;

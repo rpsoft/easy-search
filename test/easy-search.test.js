@@ -136,6 +136,50 @@ test('generate index from folder', async () => {
   expect(indexFromFolder).toMatchSnapshot();
 });
 
+test('generate index from DB with invalid file path', async () => {
+  const PATH_BASE = 'test/'
+  const info = [
+    // not valid file
+    {
+      file_path: PATH_BASE + 'testDocs/not_exiting_file.html',
+      collection_id: '1',
+      tid: '1',
+      doi: '1abcde',
+      pmid: '1fghij',
+      url: 'http://example1.test',
+      user: 'testUser',
+      userid: '',
+    },
+    // valid file
+    {
+      file_path: PATH_BASE + 'testDocs/1/8596317_1.html',
+      collection_id: '1',
+      tid: '2',
+      doi: '2abcde',
+      pmid: '2fghij',
+      url: 'http://example2.test',
+      user: 'testUser',
+      userid: '',
+    }
+  ]
+
+  // db tables => easysearch => index order by tid (field) + added metadata
+  const indexFromDBWithInvalidFile = await easysearch.indexFromDB(
+    // DB info
+    info,
+    {
+      filePathFieldName: 'file_path',
+      linkFieldName: 'tid',
+    },
+    html=true,
+    10
+  )
+
+  expect(indexFromDBWithInvalidFile).toHaveProperty('errors');
+  expect(indexFromDBWithInvalidFile.errors.length).toEqual(1);
+  expect(indexFromDBWithInvalidFile.errors[0].file_path).toEqual('test/testDocs/not_exiting_file.html');
+});
+
 test('generate index from DB', async () => {
   const PATH_BASE = 'test/'
   const info = [

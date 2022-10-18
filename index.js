@@ -40,14 +40,31 @@ const indexFromDB = async ( info, config, html=false, contextWindowSize=10 ) => 
   let doc_freqs = {}
   let doc_chunks = {}
   let doc_info = {}
+  const errors = []
 
   console.log('[easy-search] indexFromDB Processing: ' + info.length + ' number of files')
   try {
     for (let tupla of info) {
       doc_info[tupla[config.linkFieldName]] = tupla
       const doc_path = tupla[config.filePathFieldName];
-      const fileStatus = fileStateCheck(doc_path)
-      const pathLinkStatus = await pathLinkStatusCheck(doc_path)
+
+      let fileStatus
+      let pathLinkStatus
+      try {
+        fileStatus = fileStateCheck(doc_path)
+        pathLinkStatus = await pathLinkStatusCheck(doc_path)
+      } catch (error) {
+        if (error.code == 'ENOENT') {
+          // if file does not exits continue
+          errors.push({
+            error: 'File not found',
+            errorCode: 'ENOENT',
+            ...tupla,
+          })
+          continue
+        }
+        throw error
+      }
 
       if (
         await fileStatus &&
@@ -112,12 +129,21 @@ const indexFromDB = async ( info, config, html=false, contextWindowSize=10 ) => 
 
   const inv_index = createInvertedIndex(doc_freqs)
   
-  return {
+  const result = {
     doc_chunks,
     doc_freqs,
     inv_index,
     doc_info,
   }
+
+  if (errors.length > 0) {
+    return {
+      errors,
+      ...result,
+    }
+  }
+
+  return result
 }
 
 /**
@@ -132,6 +158,7 @@ const indexFolder = async ( documentFolders, html=false, contextWindowSize=10 ) 
 
   let doc_freqs = {}
   let doc_chunks = {}
+  const errors = []
 
   try {
     for (let d in documentFolders) {
@@ -144,8 +171,24 @@ const indexFolder = async ( documentFolders, html=false, contextWindowSize=10 ) 
 
       await Promise.all(files.map(async (file) => {
         const doc_path = path.join(directoryPath, file);
-        const fileStatus = fileStateCheck(doc_path)
-        const pathLinkStatus = await pathLinkStatusCheck(doc_path)
+
+        let fileStatus
+        let pathLinkStatus
+        try {
+          fileStatus = fileStateCheck(doc_path)
+          pathLinkStatus = await pathLinkStatusCheck(doc_path)
+        } catch (error) {
+          if (error.code == 'ENOENT') {
+            // if file does not exits continue
+            errors.push({
+              error: 'File not found',
+              errorCode: 'ENOENT',
+              ...tupla,
+            })
+            return true
+          }
+          throw error
+        }
 
         if (
           await fileStatus &&
@@ -210,11 +253,20 @@ const indexFolder = async ( documentFolders, html=false, contextWindowSize=10 ) 
 
   const inv_index = createInvertedIndex(doc_freqs)
 
-  return {
+  const result = {
     doc_chunks,
     doc_freqs,
     inv_index,
   }
+
+  if (errors.length > 0) {
+    return {
+      errors,
+      ...result,
+    }
+  }
+
+  return result
 }
 
 // Uses the doc->freq map to create an inverted index.

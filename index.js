@@ -278,14 +278,26 @@ const createInvertedIndex = ( doc_freqs ) => {
     for (let word in doc_freqs[doc]) {
       // console.log(word)
       let doc_vector = inv_index[word]
-
-      if ( doc_vector && (!doc_vector[doc]) ){
-        doc_vector.push(doc)
-      } else {
-        doc_vector = [doc]
+      try {
+        if (
+          doc_vector &&
+          // fix when word is constructor
+          // see Object.constructor inner property 
+          Array.isArray(doc_vector) &&
+          !doc_vector[doc] == true
+        ){
+          doc_vector.push(doc)
+        } else {
+          doc_vector = [doc]
+        }
+  
+        inv_index[word] = doc_vector
+  
+      } catch (error) {
+        console.error(error)
+        console.error(doc)
+        console.error(word)
       }
-
-      inv_index[word] = doc_vector
     }
   }
 
@@ -301,12 +313,15 @@ const search = ( index_data, query, rankLimit=-1  ) => {
     const doc_tf_idf = queryTokenizedAndStemed.reduce( (total_tf_idf, term) => {
 
       // IDF(t) = log_e(Total number of documents / Number of documents with term t in it).
-      const idf = index_data.inv_index[term] ?
+      // warning prevent own methods like 'constructor' checking if it is an array
+      const idf = index_data.inv_index[term] && Array.isArray(index_data.inv_index[term]) ?
         Math.log(totalNumberDocuments / index_data.inv_index[term].length)
         : 0;
 
       // TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
-      const tf = index_data.doc_freqs[ doc ][ term ] == undefined ?
+      // warning prevent own methods like 'constructor' checking if it is an array
+      const tf = index_data.doc_freqs[ doc ][ term ] == undefined || 
+        Array.isArray(index_data.doc_freqs[ doc ][ term ]) == false ?
         0
         : index_data.doc_freqs[ doc ][ term ].length
       // / Object.keys(index_data.doc_freqs[ doc ]).length
